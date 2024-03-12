@@ -1,8 +1,8 @@
-import { WalletSelector, setupWalletSelector } from "@near-wallet-selector/core";
+import { setupWalletSelector } from "@near-wallet-selector/core";
 import { setupModal } from "@near-wallet-selector/modal-ui";
-import { MyNearWalletParams, setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
+import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
 import "@near-wallet-selector/modal-ui/styles.css"
-import { disconnect } from "process";
+import networkConfig from './networkConfig'
 
 export class Wallet {
     walletSelector;
@@ -12,7 +12,7 @@ export class Wallet {
     selector;
     accountId;
 
-    constructor({ network = 'testnet' }) {
+    constructor({ network = networkConfig.defaultNetwork }) {
 
         this.network = network
       }
@@ -38,13 +38,13 @@ export class Wallet {
 
   async signIn() {
     const selector = await setupWalletSelector({
-        network: "testnet",
+        network: networkConfig.defaultNetwork,
         modules: [setupMyNearWallet()],
     });
 
     this.selector = selector
     const modal = setupModal(selector, {
-      contractId: "test.testnet",
+      contractId: networkConfig.defaultNetwork,
     });
     modal.show();
     this.isSignedIn = true
