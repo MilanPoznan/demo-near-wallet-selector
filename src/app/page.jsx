@@ -4,7 +4,7 @@ import { WalletContext } from "./layout";
 import { HomeWrapper, WalletButtons } from "./Home.styles";
 
 export default function Home() {
-  const [isSigned, setIsSigned] = useState<string>()
+  const [isSigned, setIsSigned] = useState()
   const walletContext = useContext(WalletContext)
 
   async function isWalletSigned() {

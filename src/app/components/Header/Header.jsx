@@ -6,7 +6,7 @@ import Link from "next/link";
 export const Header = () => {
     const [accountId, setAccoutnId] = useState()
     const walletContext = useContext(WalletContext)
-    const [isSigned, setIsSigned] = useState<string>()
+    const [isSigned, setIsSigned] = useState()
 
   async function isWalletSigned() {
     const {isSignedIn, accountId} = await walletContext.startUp()
